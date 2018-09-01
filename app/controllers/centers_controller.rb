@@ -6,10 +6,10 @@ class CentersController < ApplicationController
     center_ids = CenterGood.where(good_id: good_id).pluck("center_id")
 
     if good_id.present?
-      @centers = Center.where(id: center_ids).not(address: nil)
+      @centers = Center.includes(:cats).where(id: center_ids).not(address: nil)
       render json: @centers, status: :ok
     else
-      @centers = Center.where.not(address: nil)
+      @centers = Center.includes(:cats).where.not(address: nil)
       render json: @centers, status: :ok
     end
 
