@@ -7,7 +7,7 @@ class Cat < ApplicationRecord
       upkind: 422400,
       care_reg_no: center[:center_id],
       state: 'notice',
-      ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ=='
+      ServiceKey: ENV['OPENAPI_SECRET_KEY']
     }
     uri.query = URI.encode_www_form(params)
 

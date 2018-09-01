@@ -4,10 +4,8 @@ require 'nokogiri'
 class Sido < ApplicationRecord
   def self.get_sidos
     uri = URI.parse('http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido')
-    params = { ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ==' }
+    params = { ServiceKey: ENV['OPENAPI_SECRET_KEY'] }
     uri.query = URI.encode_www_form(params)
-
-    puts uri
 
     res = Net::HTTP.get_response(uri)
     data = res.body
