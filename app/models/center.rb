@@ -4,6 +4,8 @@ class Center < ApplicationRecord
 
   has_many :sponserships
 
+  after_create :set_goods
+
   def self.auto_gen_center
     name_ary = %w(한국동물구조관리협회 강남25시동물병원 상암동물병원)
     phone_ary = ["031-867-9119", "02-545-8575", "02-375-7222"]
@@ -11,9 +13,21 @@ class Center < ApplicationRecord
     name_ary.each_with_index do |name, index|
       center = self.find_or_create_by(name: name)
       center.update!(phone: phone_ary[index], address: address_ary[index])
-      Good.all.each do |g|
-        center.center_goods.create(good: g)
-      end
     end
+  end
+
+  def set_goods
+    good_ids = Good.all.ids
+    rand_num = [1,2,3].sample
+    Good.where(id: good_ids.sample(rand_num)).each do |good|
+      center_goods.create(good: good)
+    end
+  end
+
+  def self.dump_center
+    file = File.read('center.json')
+    data_hash = JSON.parse(file)
+    puts data_hash.class
+    self.create(data_hash)
   end
 end
