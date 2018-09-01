@@ -19,6 +19,10 @@ class Center < ApplicationRecord
     end
   end
 
+  def good_names
+    self.goods.map { |good| good.name }
+  end
+
   def num_cats
     self.cats.length
   end
@@ -34,6 +38,7 @@ class Center < ApplicationRecord
   def as_json(*)
     super.tap do |hash|
       hash[:num_cats] = num_cats
+      hash[:good_names] = good_names
     end
   end
 
