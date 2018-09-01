@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cat_id: MyString
+  center: one
+  thumbnail_url: MyText
+  image_url: MyText
+
+two:
+  cat_id: MyString
+  center: two
+  thumbnail_url: MyText
+  image_url: MyText
