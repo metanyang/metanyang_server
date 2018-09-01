@@ -15,6 +15,7 @@ gem 'sendgrid-ruby', '1.1.6'
 gem 'sendgrid-actionmailer'
 gem 'figaro'
 gem 'rack-cors', require: 'rack/cors'
+gem 'carrierwave'
 
 
 
