@@ -19,9 +19,21 @@ class Center < ApplicationRecord
     end
   end
 
+  def num_cats
+    self.cats.length
+  end
+
+  def self.all_available(center_ids)
+    if center_ids.any?
+      self.includes(:cats).where(id: center_ids).not(address: nil)
+    else
+      self.includes(:cats).where.not(address: nil)
+    end
+  end
+
   def as_json(*)
     super.tap do |hash|
-      hash[:num_cats] = self.cats.length
+      hash[:num_cats] = num_cats
     end
   end
 
