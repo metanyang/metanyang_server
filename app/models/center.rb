@@ -25,7 +25,7 @@ class Center < ApplicationRecord
 
   def self.all_available(center_ids)
     if center_ids.any?
-      self.includes(:cats).where(id: center_ids).not(address: nil)
+      self.includes(:cats).where(id: center_ids).where.not(address: nil)
     else
       self.includes(:cats).where.not(address: nil)
     end
