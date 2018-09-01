@@ -11,4 +11,13 @@ name_ary.each_with_index do |name, index|
   good.update(description: name_ary[index])
 end
 
-Center.get_centers
+sidos = Sido.get_sidos
+sidos.each do |sido|
+  sigungus = Sigungu.get_sigungus(sido)
+  sigungus.each do |sigungu|
+    centers = Center.get_centers(sido, sigungu)
+    centers.each do |center|
+      Cat.get_cats(center)
+    end
+  end
+end

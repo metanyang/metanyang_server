@@ -1,6 +1,3 @@
-require 'net/http'
-require 'nokogiri'
-
 class CentersController < ApplicationController
   before_action :set_center, only: [:show]
   # 업체 목록 api

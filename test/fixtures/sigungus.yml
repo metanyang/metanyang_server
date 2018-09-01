@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sigungu_id: MyString
+  name: MyString
+  sido: one
+
+two:
+  sigungu_id: MyString
+  name: MyString
+  sido: two

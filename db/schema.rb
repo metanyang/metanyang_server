@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180901100855) do
+ActiveRecord::Schema.define(version: 20180901152210) do
+
+  create_table "cats", force: :cascade do |t|
+    t.string "cat_id"
+    t.integer "center_id"
+    t.text "thumbnail_url"
+    t.text "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_cats_on_cat_id"
+    t.index ["center_id"], name: "index_cats_on_center_id"
+  end
 
   create_table "center_goods", force: :cascade do |t|
     t.integer "center_id"
@@ -28,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180901100855) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "center_id"
     t.index ["name"], name: "index_centers_on_name"
   end
 
@@ -37,6 +49,24 @@ ActiveRecord::Schema.define(version: 20180901100855) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_goods_on_name"
+  end
+
+  create_table "sidos", force: :cascade do |t|
+    t.string "sido_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sido_id"], name: "index_sidos_on_sido_id"
+  end
+
+  create_table "sigungus", force: :cascade do |t|
+    t.string "sigungu_id"
+    t.string "name"
+    t.integer "sido_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sido_id"], name: "index_sigungus_on_sido_id"
+    t.index ["sigungu_id"], name: "index_sigungus_on_sigungu_id"
   end
 
   create_table "sponserships", force: :cascade do |t|
