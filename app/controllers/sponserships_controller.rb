@@ -35,17 +35,25 @@ class SponsershipsController < ApplicationController
     end
   end
 
-  
+
   def results
     image = params[:image]
-    uploader = ImageUploader.new
-    uploader.store! image
+    puts image
+    if image.present?
+      uploader = ImageUploader.new
+      uploader.store! image
+      result_hash = {image: uploader.url, content: params[:content]}
+    else
+      result_hash = {content: params[:content]}
+    end
 
-    @result_mail = @sponsership.create_result_mail(image: uploader.url, content: params[:content])
+    @result_mail = @sponsership.result_mails.create(result_hash)
 
     @result = ResultMailer.result_mail(@result_mail).deliver_now
     if @result.errors == []
-      render json: {msg: "이메일이 전송되었습니다."}, status: :ok
+      @result = @result_mail.as_json
+      @result["full_image"] = "http://jinhyuk.me:3333#{@result_mail.image}"
+      render json: @result, status: :ok
     else
       render json: @result.errors, status: :internal_server_error
     end

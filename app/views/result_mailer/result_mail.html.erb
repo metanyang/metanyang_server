@@ -4,7 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <%= image_tag attachments['image'].url, width:"190", height:"155" %>
+    <% unless @result_mail.image.nil? %>
+      <%= image_tag attachments['image'].url, width:"190", height:"155" %>
+    <% end %>
     <p>
       <%= @result_mail.content %>
     </p>
