@@ -51,7 +51,9 @@ class SponsershipsController < ApplicationController
 
     @result = ResultMailer.result_mail(@result_mail).deliver_now
     if @result.errors == []
-      render json: {result: :success, msg: "이메일이 전송되었습니다."}, status: :ok
+      @result = @result_mail.as_json
+      @result["full_image"] = "http://jinhyuk.me:3333#{@result_mail.image}"
+      render json: @result, status: :ok
     else
       render json: @result.errors, status: :internal_server_error
     end
