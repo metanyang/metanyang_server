@@ -6,6 +6,7 @@ class Center < ApplicationRecord
   has_many :goods, through: :center_goods
 
   has_many :sponserships
+  has_many :cats
 
   after_create :set_goods
 
@@ -15,6 +16,12 @@ class Center < ApplicationRecord
     rand_num = [1,2,3].sample
     Good.where(id: good_ids.sample(rand_num)).each do |good|
       center_goods.create(good: good)
+    end
+  end
+
+  def as_json(*)
+    super.tap do |hash|
+      hash[:num_cats] = self.cats.length
     end
   end
 

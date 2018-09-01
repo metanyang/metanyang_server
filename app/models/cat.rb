@@ -19,7 +19,7 @@ class Cat < ApplicationRecord
 
     cats = []
     if !items.empty?
-      center.address = items.first.xpath("careNm").text
+      center.address = items.first.xpath("careAddr").text
       center.phone = items.first.xpath("careTel").text
       center.save
   
