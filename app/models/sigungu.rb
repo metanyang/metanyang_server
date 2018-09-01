@@ -8,7 +8,7 @@ class Sigungu < ApplicationRecord
     uri = URI.parse('http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sigungu')
     params = {
       upr_cd: sido[:sido_id],
-      ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ=='
+      ServiceKey: ENV['OPENAPI_SECRET_KEY']
     }
     uri.query = URI.encode_www_form(params)
 

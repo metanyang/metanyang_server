@@ -19,6 +19,10 @@ class Center < ApplicationRecord
     end
   end
 
+  def good_names
+    self.goods.map { |good| good.name }
+  end
+
   def num_cats
     self.cats.length
   end
@@ -34,6 +38,7 @@ class Center < ApplicationRecord
   def as_json(*)
     super.tap do |hash|
       hash[:num_cats] = num_cats
+      hash[:good_names] = good_names
     end
   end
 
@@ -42,7 +47,7 @@ class Center < ApplicationRecord
     params = {
       upr_cd: sido[:sido_id],
       org_cd: sigungu[:sigungu_id],
-      ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ=='
+      ServiceKey: ENV['OPENAPI_SECRET_KEY']
     }
     uri.query = URI.encode_www_form(params)
 
