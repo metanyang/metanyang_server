@@ -21,7 +21,6 @@ class CentersController < ApplicationController
   end
 
 
-
   private
   def set_center
     @center = Center.find(params[:id])

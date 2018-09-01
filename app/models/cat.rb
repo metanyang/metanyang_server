@@ -10,10 +10,10 @@ class Cat < ApplicationRecord
       ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ=='
     }
     uri.query = URI.encode_www_form(params)
-  
+
     res = Net::HTTP.get_response(uri)
     data = res.body
-  
+
     xml = Nokogiri::XML(data)
     items = xml.xpath("//item")
 
@@ -22,7 +22,7 @@ class Cat < ApplicationRecord
       center.address = items.first.xpath("careAddr").text
       center.phone = items.first.xpath("careTel").text
       center.save
-  
+
       cats = items.map do |item|
         {
           cat_id: item.xpath("desertionNo").text,
@@ -32,7 +32,7 @@ class Cat < ApplicationRecord
         }
       end
     end
-  
+
     self.create(cats)
   end
 end

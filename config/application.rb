@@ -27,6 +27,8 @@ module MetanyangServer
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
+    # config.middleware.insert 0, Rack::UTF8Sanitizer
+
 
 
     # Settings in config/environments/* take precedence over those specified here.

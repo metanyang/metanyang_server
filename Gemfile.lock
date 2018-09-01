@@ -83,6 +83,8 @@ GEM
     rack-cors (1.0.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-utf8_sanitizer (1.6.0)
+      rack (>= 1.0, < 3.0)
     rails (5.1.6)
       actioncable (= 5.1.6)
       actionmailer (= 5.1.6)
@@ -150,6 +152,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rack-cors
+  rack-utf8_sanitizer
   rails (~> 5.1.6)
   sendgrid-actionmailer
   sendgrid-ruby (= 1.1.6)

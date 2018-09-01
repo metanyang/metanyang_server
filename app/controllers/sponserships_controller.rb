@@ -36,7 +36,13 @@ class SponsershipsController < ApplicationController
   end
 
   def results
-    @result = ResultMailer.result_mail(@sponsership).deliver_now
+    image = params[:image]
+    uploader = ImageUploader.new
+    uploader.store! image
+
+    @result_mail = @sponsership.create_result_mail(image: uploader.url, content: params[:content])
+
+    @result = ResultMailer.result_mail(@result_mail).deliver_now
     if @result.errors == []
       render json: {msg: "이메일이 전송되었습니다."}, status: :ok
     else

@@ -16,6 +16,8 @@ gem 'sendgrid-actionmailer'
 gem 'figaro'
 gem 'rack-cors', require: 'rack/cors'
 gem 'carrierwave'
+gem 'rack-utf8_sanitizer'
+
 
 
 

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   put "/sponserships/:id" => "sponserships#update"
   # 후원자에게 메일 보내기
   post "/sponserships/:id/results" => "sponserships#results"
+
+  post 'centers/upload' => "centers#upload"
 end
