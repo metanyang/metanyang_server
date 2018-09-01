@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   get "/goods" => "goods#index"
   # 업체 목록 api
   get "/centers" => "centers#index"
-  # 후원 하기 api 
+  # 후원 하기 api
   post "/sponserships" => "sponserships#create"
+  # 후원 목록 api
   get "/centers/:id/sponserships" => "centers#show"
   put "/sponserships/:id" => "sponserships#update"
   post "/sponserships/:id/results" => "sponserships#results"

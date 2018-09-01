@@ -1,4 +1,9 @@
 class Center < ApplicationRecord
+  has_many :center_goods
+  has_many :goods, through: :center_goods
+
+  has_many :sponserships
+
   def self.auto_gen_center
     name_ary = %w(한국동물구조관리협회 강남25시동물병원 상암동물병원)
     phone_ary = ["031-867-9119", "02-545-8575", "02-375-7222"]
@@ -6,6 +11,9 @@ class Center < ApplicationRecord
     name_ary.each_with_index do |name, index|
       center = self.find_or_create_by(name: name)
       center.update!(phone: phone_ary[index], address: address_ary[index])
+      Good.all.each do |g|
+        center.center_goods.create(good: g)
+      end
     end
   end
 end
