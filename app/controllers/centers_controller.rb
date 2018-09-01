@@ -1,4 +1,5 @@
 class CentersController < ApplicationController
+  before_action :set_center, only: [:show]
   # 업체 목록 api
   def index
     good_id = params[:good_id]
@@ -15,10 +16,14 @@ class CentersController < ApplicationController
   end
 
   def show
-    center = Center.find(params[:id])
-    render json: {errors: "no id"}, status: :bad_request unless center.present?
-    @sponserships = center.sponserships
+    @sponserships = @center.sponserships
     render json: @sponserships, status: :ok
+  end
 
+
+
+  private
+  def set_center
+    @center = Center.find(params[:id])
   end
 end

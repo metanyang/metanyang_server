@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/sponserships" => "sponserships#create"
   # 후원 목록 api
   get "/centers/:id/sponserships" => "centers#show"
+  # 후원 수신완료
   put "/sponserships/:id" => "sponserships#update"
   post "/sponserships/:id/results" => "sponserships#results"
 end
