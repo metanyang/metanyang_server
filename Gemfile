@@ -14,6 +14,8 @@ gem 'puma', '~> 3.7'
 gem 'sendgrid-ruby', '1.1.6'
 gem 'sendgrid-actionmailer'
 gem 'figaro'
+gem 'rack-cors', require: 'rack/cors'
+
 
 
 # gem 'carrierwave', '~> 1.2.2'
