@@ -1,3 +1,6 @@
+require 'net/http'
+require 'nokogiri'
+
 class Center < ApplicationRecord
   has_many :center_goods
   has_many :goods, through: :center_goods
@@ -16,6 +19,7 @@ class Center < ApplicationRecord
     end
   end
 
+  # goods random 접속
   def set_goods
     good_ids = Good.all.ids
     rand_num = [1,2,3].sample
@@ -24,10 +28,38 @@ class Center < ApplicationRecord
     end
   end
 
+  # 이거 안 씀!
   def self.dump_center
     file = File.read('center.json')
     data_hash = JSON.parse(file)
     puts data_hash.class
     self.create(data_hash)
+  end
+
+  def self.get_centers
+    centers = []
+    for page in 1..33
+      uri = URI.parse('http://www.animal.go.kr/portal_rnl/map/mapInfo2.jsp')
+      params = { pagecnt: page }
+      uri.query = URI.encode_www_form(params)
+
+      res = Net::HTTP.get_response(uri)
+      data = res.body.bytes.pack('c*').force_encoding('euc-kr').encode('utf-8')
+
+      html = Nokogiri::HTML(data)
+      html.css('tbody').css('tr').each do |tr|
+        columns = tr.css('td')
+
+        if columns.length == 4
+          centers.push({
+            name: columns[1].text,
+            phone: columns[2].text,
+            address: columns[3].text.gsub(/\t|\n/, '').squish
+          })
+        end
+      end
+    end
+
+    self.create(centers)
   end
 end
