@@ -7,6 +7,8 @@ class Sido < ApplicationRecord
     params = { ServiceKey: 'EYxYSI6yr6DL73ySWR/gwiqhhCWLtgD7vzKMEo2WJK4ZtziJlBAXuxMKhVMEHEtDbYG/0wrhx18vb+mqu4gJmQ==' }
     uri.query = URI.encode_www_form(params)
 
+    puts uri
+
     res = Net::HTTP.get_response(uri)
     data = res.body
 
