@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  good: one
+  center: one
+  received_at: 2018-09-01 16:25:35
+
+two:
+  email: MyString
+  good: two
+  center: two
+  received_at: 2018-09-01 16:25:35
