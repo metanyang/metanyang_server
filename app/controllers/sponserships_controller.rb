@@ -35,6 +35,7 @@ class SponsershipsController < ApplicationController
     end
   end
 
+  
   def results
     image = params[:image]
     uploader = ImageUploader.new
