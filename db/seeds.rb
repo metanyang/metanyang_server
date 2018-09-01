@@ -11,3 +11,5 @@ name_ary.each_with_index do |name, index|
   good.update(description: name_ary[index])
   puts good
 end
+
+Center.auto_gen_center
