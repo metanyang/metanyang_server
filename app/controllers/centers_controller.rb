@@ -5,13 +5,8 @@ class CentersController < ApplicationController
     good_id = params[:good_id]
     center_ids = CenterGood.where(good_id: good_id).pluck("center_id")
 
-    if good_id.present?
-      @centers = Center.includes(:cats).where(id: center_ids).not(address: nil)
-      render json: @centers, status: :ok
-    else
-      @centers = Center.includes(:cats).where.not(address: nil)
-      render json: @centers, status: :ok
-    end
+    @centers = Center.all_available(center_ids).sort { |c1, c2| c1.num_cats <=> c2.num_cats }
+    render json: @centers, status: :ok
 
   end
 
