@@ -11,6 +11,11 @@ gem 'rails', '~> 5.1.6'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+gem 'sendgrid-ruby', '1.1.6'
+gem 'sendgrid-actionmailer'
+gem 'figaro'
+
+
 # gem 'carrierwave', '~> 1.2.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'

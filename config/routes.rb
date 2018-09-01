@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get "/centers/:id/sponserships" => "centers#show"
   # 후원 수신완료
   put "/sponserships/:id" => "sponserships#update"
+  # 후원자에게 메일 보내기
   post "/sponserships/:id/results" => "sponserships#results"
 end

@@ -1,5 +1,5 @@
 class SponsershipsController < ApplicationController
-  before_action :set_sponsership, only: [:update]
+  before_action :set_sponsership, only: [:update, :results]
 
   def create
     sponser_hash = {}
@@ -32,6 +32,15 @@ class SponsershipsController < ApplicationController
       else
         render json: {errors: 'Internal Server Error'}, status: :internal_server_error
       end
+    end
+  end
+
+  def results
+    @result = ResultMailer.result_mail(@sponsership).deliver_now
+    if @result.errors == []
+      render json: {msg: "이메일이 전송되었습니다."}, status: :ok
+    else
+      render json: @result.errors, status: :internal_server_error
     end
   end
 
