@@ -52,7 +52,7 @@ class SponsershipsController < ApplicationController
     @result = ResultMailer.result_mail(@result_mail).deliver_now
     if @result.errors == []
       @result = @result_mail.as_json
-      @result["full_image"] = "http://jinhyuk.me:3333#{@result_mail.image}"
+      @result["full_image"] = "http://jinhyuk.me:3333#{@result_mail.image}" unless @result_mail.image.nil?
       render json: @result, status: :ok
     else
       render json: @result.errors, status: :internal_server_error
